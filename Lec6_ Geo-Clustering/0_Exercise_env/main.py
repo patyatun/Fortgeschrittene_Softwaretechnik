@@ -7,7 +7,7 @@ Created on Thu Dec 14 11:40:41 2023
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-currentWorkingDirectory = "C:\\(...)\\Lec6_ Geo-Clustering\\src"
+# currentWorkingDirectory = "C:\\(...)\\Lec6_ Geo-Clustering\\src"
 # Docker:
 # currentWorkingDirectory = "/app"
 
@@ -54,24 +54,42 @@ def main():
     
     df_datmartsdem      = dft.move_last_columns_to_front(df_datmartsdem, 4)
     df_datmartsdem.iloc[:, 4:]          = df_datmartsdem.iloc[:, 4:].apply(pd.to_numeric, errors='coerce')
-    # df_datmartsdem.loc[:, sozdemlabels] = df_datmartsdem.loc[:, sozdemlabels].apply(pd.to_numeric, errors='coerce')
-
-
-
-    dmartfields         = [pdict["geocode"]] + sozdemlabels
     
-    # print(df_datmartsdem.dtypes)
+    df_datmartsdem2     = pd.get_dummies(df_datmartsdem, columns=['PackageName'], dtype=int)
     
-    df_datmartsdem2     = df_datmartsdem\
-        .loc[:, dmartfields]\
+    list_PackageName    = [x for x in df_datmartsdem2.columns.values if x.startswith('PackageName')]
+    
+    list_dmartfields    = [pdict["geocode"]] + sozdemlabels
+    list_dmart_packages = [pdict["geocode"]] + list_PackageName + sozdemlabels
+
+    # Factor analysis & clustering not with datamart fields because they dominate, only with sociodemogrphic fields!
+    df_datmartsdem3a     = df_datmartsdem2\
+        .loc[:, list_dmartfields]\
         .groupby(pdict["geocode"])\
         .mean()\
         .reset_index()
+        
+    # also the onehot encoded fields for later joining cluster numbers
+    df_datmartsdem3b     = df_datmartsdem2\
+        .loc[:, list_dmart_packages]\
+        .groupby(pdict["geocode"])\
+        .mean()\
+        .reset_index()  
+        
+        
+    
+    # df_encoded = pd.get_dummies(df_datmartsdem, columns=['PackageName'])
+    # df_datmartsdem.loc[:, sozdemlabels] = df_datmartsdem.loc[:, sozdemlabels].apply(pd.to_numeric, errors='coerce')
+    # print(df_datmartsdem.dtypes)
+    
+
+        
+        
     
     # ------------------------------------------------------------------------------
     # II Faktor Analyse 
     
-    df_selFeatures, selectedFeatures = fal.getColFilteredDF_fromFactorAnalysis(df_datmartsdem2.iloc[:, 1:], pdict)  
+    df_selFeatures, selectedFeatures = fal.getColFilteredDF_fromFactorAnalysis(df_datmartsdem3a.iloc[:, 1:], pdict)  
     print(selectedFeatures)   
     
     # ------------------------------------------------------------------------------
@@ -85,7 +103,7 @@ def main():
     oCounter1           = ht.countFreqs(labels2)
     print(oCounter1)
         
-    df_clustered                = df_datmartsdem2.copy() 
+    df_clustered                = df_datmartsdem3b.copy() 
     df_clustered['Cluster']     = labels2
     
     print("Numbers per cluster: ")
