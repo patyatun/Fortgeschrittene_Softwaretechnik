@@ -8,7 +8,7 @@ current_working_directory = os.getcwd()
 print(f"The current working directory is: {current_working_directory}")
 
 # Change the working directory to a new directory (replace with the path you want)
-new_working_directory = "C:/1 - eigenes/Transformers - Materialien/Transformers - BERT/src2"
+new_working_directory = "C:/(...)/Transformers - BERT/src"
 os.chdir(new_working_directory)
 
 # Get and print the new current working directory
