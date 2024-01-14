@@ -7,7 +7,7 @@ Created on Thu Dec 14 11:40:41 2023
 
 # -----------------------------------------------------------------------------
 # -----------------------------------------------------------------------------
-currentWorkingDirectory = "C:\\1 - eigenes\\Lehrauftrag - BHT\\Vorlesungsreihe WS23-24\\Lec7_ Geo-Prediction\\src"
+currentWorkingDirectory = "C:\\(...)\\Lec7_ Geo-Prediction"
 # Docker:
 # currentWorkingDirectory = "/app"
 
