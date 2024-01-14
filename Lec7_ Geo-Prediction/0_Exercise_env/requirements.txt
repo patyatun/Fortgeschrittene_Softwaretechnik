@@ -1,0 +1,9 @@
+pandas
+geopandas
+shapely
+factor-analyzer
+scikit-learn
+matplotlib
+seaborn
+spyder
+# xgboost
