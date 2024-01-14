@@ -6,7 +6,7 @@
 # -------------------------------
 # Installation:
 c:
-cd C:\(...)\Lec6_ Geo-Clustering
+cd C:\(...)\Lec7_ Geo-Prediction
 
 # Windows:
 python -m venv .venv
@@ -20,7 +20,7 @@ pip install -r requirements.txt
 # -------------------------------
 # Launch:
 c:
-cd C:\(...)\Lec6_ Geo-Clustering
+cd C:\(...)\Lec7_ Geo-Prediction
 
 # Windows:
 .venv\Scripts\activate.bat
