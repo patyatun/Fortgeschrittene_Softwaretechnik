@@ -14,9 +14,9 @@ p['table_meta']             = 'meta.txt'
 
 # param	                    param_value
 p['anzFeatures']            = 5
-p['bfac']                   = 50
-p['clnum']                  = 5
-p['thr']                    = 0.7
+p['bfac']                   = 20
+p['clnum']                  = 4
+p['thr']                    = 0.2
 
 p["file_datamart"]          = "datamart_berlin.csv"
 p["file_geodata"]           = "geodata_berlin.csv"

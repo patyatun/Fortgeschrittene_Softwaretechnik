@@ -77,13 +77,6 @@ def main():
     # ------------------------------------------------------------------------------
     # III Clustering
     
-    # from config                          import pdict
-    pdict['anzFeatures'] = 5
-    pdict['bfac']       = 20
-    pdict['clnum']      = 4
-    pdict['thr']        = 0.2
-
-    
     df_selFeatures2     = df_selFeatures.fillna(0)
     
     labels              = cl.birchen(df_selFeatures2, pdict['bfac'], pdict['clnum'], pdict['thr'])
